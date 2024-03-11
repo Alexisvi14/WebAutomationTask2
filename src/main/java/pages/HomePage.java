@@ -8,13 +8,11 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 
 import java.util.List;
 
 public class HomePage extends AbstractPage{
-    private static final Logger LOGGER = LoggerFactory.getLogger(HomePage.class);
     @FindBy(xpath = "//a[@_sp='m570.l1524']")
     WebElement loginButton;
     @FindBy(className = "gh-tb")
@@ -30,14 +28,14 @@ public class HomePage extends AbstractPage{
     @FindBy(xpath = "(//a[contains(text(), 'Moda')])[2]")
     WebElement fashionCategory;
 
-    public HomePage(WebDriver driver, WebDriverWait wait, Logger logger) {
-        super(driver, wait, logger);
+    public HomePage(WebDriver driver, WebDriverWait wait) {
+        super(driver, wait);
         PageFactory.initElements(driver, this);
     }
 
     public LoginPage clickLoginButton(){
         click(loginButton);
-        return new LoginPage(driver);
+        return new LoginPage(driver, wait);
     }
 
     public void clickSearchBox(String elementToSearch){
@@ -45,11 +43,11 @@ public class HomePage extends AbstractPage{
     }
 
     public void clickSearchButton(){
-        searchButton.click();
+        click(searchButton);
     }
 
     public void getNumberOfSearchedElements(){
-        LOGGER.info(String.valueOf(searchedElements.size()));
+        logger.info(String.valueOf(searchedElements.size()));
     }
 
     public void hoverSportsLink(){
@@ -57,8 +55,8 @@ public class HomePage extends AbstractPage{
         actions.moveToElement(sportsCategory).perform();
     }
     public SportsPage clickSportsLink(){
-        sportsCategory.click();
-        return new SportsPage(driver, wait, logger);
+        click(sportsCategory);
+        return new SportsPage(driver, wait);
     }
 
     public void hoverFashionLink(){
@@ -67,10 +65,7 @@ public class HomePage extends AbstractPage{
     }
 
     public void clickCategoriesDropdown() throws InterruptedException {
-        dropdownCategories.click();
-        Thread.sleep(3000);
-        Select selectDrop = new Select(dropdownCategories);
-        selectDrop.selectByIndex(2);
+        selectDropdownElementByIndex(dropdownCategories, 2);
         Thread.sleep(3000);
     }
 }

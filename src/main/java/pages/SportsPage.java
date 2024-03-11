@@ -14,8 +14,8 @@ public class SportsPage extends AbstractPage{
     @FindBy(xpath = "//li[@class='b-links-accordion']")
     List<WebElement> categoriesLinks;
 
-    public SportsPage(WebDriver driver, WebDriverWait wait, Logger logger) {
-        super(driver, wait, logger);
+    public SportsPage(WebDriver driver, WebDriverWait wait) {
+        super(driver, wait);
         PageFactory.initElements(driver, this);
     }
 
