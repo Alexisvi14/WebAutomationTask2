@@ -39,7 +39,7 @@ public abstract class AbstractTest implements ITestListener {
         driverThreadLocal.set(driver);
     }
 
-    @AfterMethod
+    @AfterMethod(alwaysRun = true)
     public void tearDown(){
         driverThreadLocal.get().quit();
         }

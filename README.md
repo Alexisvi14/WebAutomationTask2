@@ -1,4 +1,4 @@
-# Web Automation Task 2 & 3
+# Web Automation Task 2, 3 & 4
 ### Repository based on Post Education Learning Plan tasks
 This is a project with testing purposes developed using some important tools like TestNG and Selenium. The same will be carried out using eBay webpage. 
 
